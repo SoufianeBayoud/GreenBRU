@@ -54,10 +54,7 @@ public class recfragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         View view = inflater.inflate(R.layout.fragment_recfragment, container, false);
-        /*FrameLayout wrapper = getActivity().findViewById(R.id.wrapper);
-        wrapper.setVisibility(View.GONE);*/
         recview = view.findViewById(R.id.recview);
         recview.setLayoutManager(new LinearLayoutManager(getContext()));
         FirebaseRecyclerOptions<AlertsHelperClass> options =

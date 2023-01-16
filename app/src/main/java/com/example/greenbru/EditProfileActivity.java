@@ -24,7 +24,6 @@ public class EditProfileActivity extends AppCompatActivity {
     EditText editName, editFirst_name, editLast_name, editPassword, editEmail;
     Button updateBtn, goBacktoMapBtn;
     AppCompatButton imgProfile;
-   // String nameUser, emailUser, firstnameUser, lastnameUser, passwordUser;
     DatabaseReference reference;
     public static String nameUser, emailUser, firstnameUser, lastnameUser, passwordUser, imgURL;
 
@@ -47,16 +46,6 @@ public class EditProfileActivity extends AppCompatActivity {
         lastnameUser = EditProfileActivity.lastnameUser;
         passwordUser = EditProfileActivity.passwordUser;
         imgURL = EditProfileActivity.imgURL;
-
-        System.out.println(nameUser);
-        System.out.println(emailUser);
-        System.out.println(firstnameUser);
-        System.out.println(lastnameUser);
-        System.out.println(passwordUser);
-        System.out.println(imgURL);
-
-
-
 
         reference = FirebaseDatabase.getInstance().getReference("Users");
         showUserData();
@@ -86,13 +75,10 @@ public class EditProfileActivity extends AppCompatActivity {
         });
     }
 
-
     public void showUserData(){
 
         String userUsername = EditProfileActivity.nameUser;
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-        //Query checkUserDatabase = reference.orderByChild("username").equalTo(userUsername);
-
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -110,7 +96,6 @@ public class EditProfileActivity extends AppCompatActivity {
                     editPassword.setText(passwordFromDB);
                     editFirst_name.setText(firstNameFromDB);
                     editLast_name.setText(lastNameFromDB);
-                   // imgProfile.setText(imageURLFromDB);
 
                 }
             }
@@ -123,35 +108,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     }
-
-   /* public void passUserData(){
-        String userUsername = EditProfileActivity.data;
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userUsername);
-        Query checkUserDatabase = reference.orderByChild("username").equalTo(userUsername);
-
-        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    String nameFromDB = snapshot.child(userUsername).child("username").getValue(String.class);
-                    String emailFromDB = snapshot.child(userUsername).child("email").getValue(String.class);
-                    String firstNameFromDB = snapshot.child(userUsername).child("first_name").getValue(String.class);
-                    String lastNameFromDB = snapshot.child(userUsername).child("last_name").getValue(String.class);
-                    String passwordFromDB = snapshot.child(userUsername).child("password").getValue(String.class);
-
-                    editName.setText(nameFromDB);
-                    editEmail.setText(emailFromDB);
-                    editPassword.setText(passwordFromDB);
-                    editFirst_name.setText(firstNameFromDB);
-                    editLast_name.setText(lastNameFromDB);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });    }*/
 
 
     public boolean isNameChanged(){

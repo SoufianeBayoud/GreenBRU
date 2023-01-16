@@ -72,8 +72,6 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
     }
 
 
@@ -83,8 +81,6 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-
-
 
         profileUsername = view.findViewById(R.id.profileUsername);
         profileFirstname = view.findViewById(R.id.profileName);
@@ -115,7 +111,6 @@ public class ProfileFragment extends Fragment {
         EditProfileActivity.passwordUser = passwordUser;
         EditProfileActivity.imgURL = intent.getString("imageURL");
 
-
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,6 +120,4 @@ public class ProfileFragment extends Fragment {
         });
         return view;
     }
-
-
 }

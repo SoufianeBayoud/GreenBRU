@@ -95,27 +95,18 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), EditProfileActivity.class);
                 startActivity(intent);
-
             }
         });
-
 
         profileUsername = view.findViewById(R.id.username_settings);
         Bundle bundle = getArguments(); // Komt van Login
         if (bundle != null) {
             String usernameUser = bundle.getString("name");
 
-
             EditProfileActivity.nameUser = usernameUser;
             String urlFromDB = bundle.getString("imageURL");
             Picasso.get().load(urlFromDB).into(imageView);
-
-
-
-
         }
         return view;
     }
-
-
 }

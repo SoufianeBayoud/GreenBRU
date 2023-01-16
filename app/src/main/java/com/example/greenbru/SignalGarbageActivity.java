@@ -57,7 +57,6 @@ public class SignalGarbageActivity extends AppCompatActivity {
         root = FirebaseDatabase.getInstance(url).getReference("Signals");
         reference = FirebaseStorage.getInstance().getReference();
 
-
        if(getIntent().getExtras() != null){
             if(getIntent().getExtras().containsKey("latitude")){
                 double lat = getIntent().getDoubleExtra("latitude", 0.0);
@@ -68,8 +67,6 @@ public class SignalGarbageActivity extends AppCompatActivity {
             }
         }
 
-
-
         takePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,8 +75,6 @@ public class SignalGarbageActivity extends AppCompatActivity {
 
             }
         });
-
-
 
         selectPicture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,18 +92,12 @@ public class SignalGarbageActivity extends AppCompatActivity {
                 String title_signal = title.getText().toString();
                 String description_signal = description.getText().toString();
 
-
                 if(imageUri != null && title_signal != null && description_signal != null){
                     uploadToFirebase(imageUri);
                     finish();
                 }else {
                     Toast.makeText(SignalGarbageActivity.this, "Please fill in the information", Toast.LENGTH_SHORT).show();
                 }
-
-
-
-
-
             }
         });
 
@@ -119,11 +108,6 @@ public class SignalGarbageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-     /*   Intent intent = new Intent();
-        startActivityForResult(intent, 1);*/
     }
     private void requestCameraPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -152,31 +136,17 @@ public class SignalGarbageActivity extends AppCompatActivity {
         }
     }
 
-    //Ici on utilise if else if car on on utilise le requestcode a 2 endroit différents
+    //We use the if else if because wu use requestcode in 2 different places
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 2 && resultCode == RESULT_OK && data != null){
             imageUri = data.getData();
-
-
         } else if(requestCode == CAMERA_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 //photo taken successfully
-                //finish();
                 Log.d("photo is taken", "photo is taken");
             }}
-
-        /*if (requestCode == CAMERA_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                //photo taken successfully
-                finish();
-            }
-        } else if (requestCode == 2 && resultCode == RESULT_OK && data != null){
-            imageUri = data.getData();
-
-
-        }*/
     }
 
     private void uploadToFirebase(Uri uri) {
@@ -192,15 +162,9 @@ public class SignalGarbageActivity extends AppCompatActivity {
                         latitude = saved.getDouble("lat");
                         longitude = saved.getDouble("lon");
 
-
                         AlertsHelperClass alertsHelperClass = new AlertsHelperClass(title_signal, description_signal, uri.toString(), latitude, longitude);
                         root.child(title_signal).setValue(alertsHelperClass);
                         Toast.makeText(SignalGarbageActivity.this, "Upload succes!", Toast.LENGTH_SHORT).show();
-
-
-
-
-
 
                     }
                 });

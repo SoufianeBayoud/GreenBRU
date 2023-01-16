@@ -94,15 +94,6 @@ public class NotificationFragment extends Fragment {
         return view;
     }
 
-   /* private void makeCall(){
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-            String phoneNumber = "tel:" + "0800 98 181";
-            Intent dial = new Intent(Intent.ACTION_CALL, Uri.parse(phoneNumber));
-            startActivity(dial);
-        } else {
-            requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, PERMISSION_REQUEST_CALL_PHONE);
-        }
-    }*/
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == PERMISSION_REQUEST_CALL_PHONE) {

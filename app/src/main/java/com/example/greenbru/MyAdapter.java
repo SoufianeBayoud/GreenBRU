@@ -25,7 +25,7 @@ public class MyAdapter extends FirebaseRecyclerAdapter<AlertsHelperClass, MyAdap
         super(options);
     }
 
-    //Ici on lie le Helper au xml
+    //We link the helper and the xml
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull AlertsHelperClass model) {
 
@@ -47,7 +47,7 @@ public class MyAdapter extends FirebaseRecyclerAdapter<AlertsHelperClass, MyAdap
 
             }
         });
-*/
+        */
 
     }
 
@@ -57,11 +57,10 @@ public class MyAdapter extends FirebaseRecyclerAdapter<AlertsHelperClass, MyAdap
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerowdesign, parent, false);
         myviewholder myViewHolder = new myviewholder(view);
 
-        //myViewHolder.go_to_specific_item = view.findViewById(R.id.select_item_row);
         view.findViewById(R.id.select_item_row).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //On montre le item qu'on a select
+                //We show the selected item
                 int position = myViewHolder.getAdapterPosition();
                 AlertsHelperClass model = getItem(position);
                 AppCompatActivity activity = (AppCompatActivity)v.getContext();
@@ -70,13 +69,11 @@ public class MyAdapter extends FirebaseRecyclerAdapter<AlertsHelperClass, MyAdap
                         .replace(R.id.wrapper, new descfrag(model.getTitle(), model.getDescription(), model.getImageURL()))
                         .addToBackStack(null)
                         .commit();
-                //On hide ici la liste des fragmenten pour montrer que le fragment qu'on a select
+                //We hide the list of fragments to show the fragment that we selected
                 View fragmentToHide = activity.findViewById(R.id.recview);
                 fragmentToHide.setVisibility(View.GONE);
-
             }
         });
-
         return myViewHolder;
     }
 
@@ -90,9 +87,6 @@ public class MyAdapter extends FirebaseRecyclerAdapter<AlertsHelperClass, MyAdap
             img1 = itemView.findViewById(R.id.img1);
             nametext = itemView.findViewById(R.id.nametext);
             coursetext = itemView.findViewById(R.id.coursetext);
-            //go_to_specific_item = itemView.findViewById(R.id.select_item_row);
-
-
         }
     }
 }

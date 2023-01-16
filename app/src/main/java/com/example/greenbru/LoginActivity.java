@@ -47,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
         register = findViewById(R.id.register_login_main);
         username = findViewById(R.id.username_login_main);
         password = findViewById(R.id.password_login_main);
-        //googleBtn = findViewById(R.id.google_btn_login_main);
 
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_NAME, MODE_PRIVATE);
         login.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +112,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     username.setError(null);
                     String passwordFromDB = snapshot.child(userUsername).child("password").getValue(String.class);
-                    //passwordFromDB.equals(userPassword)
                     if(!Objects.equals(passwordFromDB, password)){
                         username.setError(null);
 
@@ -133,12 +131,6 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra("password", passwordFromDB);
                         intent.putExtra("imageURL", imageURLFromDB);
                         startActivity(intent);
-
-
-
-
-
-
 
                     } else {
                         password.setError("Invalid credentials");

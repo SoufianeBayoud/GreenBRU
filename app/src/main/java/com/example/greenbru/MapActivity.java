@@ -77,7 +77,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-//implements OnMapReadyCallback, MapboxMap.OnMapClickListener, PermissionsListener
+
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, MapboxMap.OnMapClickListener, PermissionsListener {
     private Button SignalButton;
     TextView user_textView, role;
@@ -85,7 +85,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     ImageView imageView;
     String url;
     private static final int PERMISSION_CODE = 1234;
-    Uri image_uri;
 
 
     private PermissionsManager permissionsManager;
@@ -118,26 +117,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         String name = sharedPreferences.getString(USERNAME, null);
 
 
-
-
         final DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         NavigationView navigationView = findViewById(R.id.navigationView);
         View headerView = navigationView.getHeaderView(0);
-        //mis ici par rapport au View vd header
+        //It's for the view in the header (user_textView)
         user_textView = headerView.findViewById(R.id.username_navigation_header);
         role = headerView.findViewById(R.id.role_navigation_layer);
         profileImage = headerView.findViewById(R.id.imageProfile);
-        String nameFromLoginActivity = getIntent().getStringExtra("name"); //Afkomstig van Login
-        String value = LoginActivity.value;
-        /*if (value != null) {
-            user_textView.setText(value);
-        }*/
         user_textView.setText(name);
-        System.out.println(name + "DSFLDFSDJFS FSDLJFDLJSDF");
 
 
-
-        //Pquoi sa marche pas ?
         if (user_textView.getText().toString() != "Admin") {
             role.setText("User");
             role.setTextColor(Color.parseColor("#32CD32"));
@@ -171,11 +160,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         SignalButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
-                /*
-                //MapTest.class
-                Intent intent = new Intent(MapActivity.this, SignalGarbageActivity.class);
-                startActivity(intent);*/
-
                 LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -196,11 +180,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     Intent intent = new Intent(MapActivity.this, SignalGarbageActivity.class);
                     intent.putExtra("latitude", latitude);
                     intent.putExtra("longitude", longitude);
-
                     startActivity(intent);
-                    /*LatLng point = new LatLng(latitude, longitude);
-                    MakeMarker(point);*/
-
 
                 } else{
                     Toast.makeText(MapActivity.this,"Unknown location",Toast.LENGTH_SHORT).show();
@@ -210,20 +190,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     Toast.makeText(MapActivity.this,"GPS is not enabled",Toast.LENGTH_SHORT).show();
                 }
 
-
-
                 Toast.makeText(MapActivity.this,"Latitude: " + latitude + " Longitude: " + longitude,Toast.LENGTH_SHORT).show();
-
-
 
             }
         });
 
-        //On appelle le navigationView du navigationheader/menu
+        //We call the navigationView of the navigationheader/menu
         NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        //going to
         navigationView.getMenu().findItem(R.id.menuLogout).setOnMenuItemClickListener(menuItem -> {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
@@ -231,7 +206,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             return true;
         });
 
-        //going to
         navigationView.getMenu().findItem(R.id.menuMap).setOnMenuItemClickListener(menuItem -> {
             Intent intent = new Intent(getApplicationContext(), MapActivity.class);
             startActivity(intent);
@@ -324,7 +298,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 )));
 
                 //Vaste markers voor de 3 RecyParks in Brussel
-                //CHANGER LA COULEUR DES MARKERS
                 List<MarkerOptions> RecycleContainerList = new ArrayList<>();
                 RecycleContainerList.add(new MarkerOptions().position(new LatLng(50.8040133, 4.2944579)).setTitle("RecyPark North"));
                 RecycleContainerList.add(new MarkerOptions().position(new LatLng(50.8002823, 4.3031717)).setTitle("Container Park Forest"));

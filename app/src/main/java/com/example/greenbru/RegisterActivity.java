@@ -56,7 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.password_register_main);
         email = findViewById(R.id.email);
 
-        //2buttons
         register = findViewById(R.id.register);
         login = findViewById(R.id.signin);
         updateButton = findViewById(R.id.add_picture_register);
@@ -64,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Ici on mets tout dans le Realtime DB
+                //We put it in a Realtime DB
                 String url = "https://greenbru-5e1b0-default-rtdb.europe-west1.firebasedatabase.app/";
                 database = FirebaseDatabase.getInstance(url);
                 reference = database.getReference("Users");
@@ -75,11 +74,8 @@ public class RegisterActivity extends AppCompatActivity {
                 String pass = password.getText().toString();
                 String email_adress = email.getText().toString();
                 String pass_uri = imageUri.toString();
-                System.out.println(imageUri);
 
                 storageReference = FirebaseStorage.getInstance().getReference();
-               /* HelperClass helperClass = new HelperClass(name, firstName, lastName, pass, email_adress);
-                reference.child(name).setValue(helperClass);*/
                 if( name != null && firstName != null && lastName != null && pass != null && email_adress != null && imageUri != null) {
                     uploadToFirebase(imageUri);
                     Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
@@ -89,16 +85,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }else {
                      Toast.makeText(RegisterActivity.this, "Please fill in all the information", Toast.LENGTH_SHORT).show();
                  }
-
-                 //On choppe le name de l'image pour le mettre dans le realtime DB
-
-                        //storageReference.child(System.currentTimeMillis() + "." + getFileExtension(imageUri)).getDownloadUrl().toString();
-                //On va l'envoyer dans le settings et le navigation drawer layout
-
-
-
-
-
             }
         });
 
@@ -110,11 +96,9 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 PackageManager.PERMISSION_GRANTED);
-
 
         updateButton.setOnClickListener(new View.OnClickListener() {
 

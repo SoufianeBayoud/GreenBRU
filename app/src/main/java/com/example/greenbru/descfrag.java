@@ -63,8 +63,6 @@ public class descfrag extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_descfrag, container, false);
-        /*FrameLayout wrapper = getActivity().findViewById(R.id.wrapper);
-        wrapper.setVisibility(View.GONE);*/
         ImageView imageholder = (ImageView) view.findViewById(R.id.imageholder);
         TextView titleholder = view.findViewById(R.id.nameholder);
         TextView descriptionholder = view.findViewById(R.id.courseholder);
@@ -88,7 +86,7 @@ public class descfrag extends Fragment {
             }
         });
 
-        //On rappelle le recfragment
+        //We call the recfragment back
         go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
