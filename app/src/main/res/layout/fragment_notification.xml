@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NotificationFragment"
+    android:background="@color/colorPrimary"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/grof_huisvuill"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/definitie_grofvuil"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/via_onze_ophaaldienst_aan_huis_van_grof_huisvuil_dit_kan_uitsluitend_na_afspraak_via_0800_981_81_inlichtingen_en_afspraken_zijn_alleen_mogelijk_via_telefoon_geen_afspraak_via_internet"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="5dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bij het vastleggen van de afspraak via telefoon, moet je vermelden: het aantal op te halen m³, het type afval, het aantal zakken bouwafval alsook uw rijksregisternummer."
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="30dp"
+        />
+
+    <Button
+        android:id="@+id/call_center"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:drawableLeft="@drawable/ic_baseline_phone_24"
+        android:text="call center" />
+
+
+</LinearLayout>

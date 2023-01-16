@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:background="#3F51B5"
+    tools:context=".RegisterActivity"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textColor="@color/white"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="25dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:id="@+id/username_register_main"
+        android:textSize="25dp"
+        android:textColorHint="@color/white"
+        android:layout_marginBottom="26dp"
+        android:paddingLeft="20dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="First name"
+        android:id="@+id/first_name"
+        android:textSize="25dp"
+        android:textColorHint="@color/white"
+        android:layout_marginBottom="26dp"
+        android:paddingLeft="20dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Last name"
+        android:id="@+id/last_name"
+        android:textSize="25dp"
+        android:textColorHint="@color/white"
+        android:layout_marginBottom="26dp"
+        android:paddingLeft="20dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:id="@+id/password_register_main"
+        android:textSize="25dp"
+        android:textColorHint="@color/white"
+        android:layout_marginBottom="26dp"
+        android:paddingLeft="20dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="E-mail"
+        android:id="@+id/email"
+        android:textSize="25dp"
+        android:textColorHint="@color/white"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="20dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_picture_register"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/round_white_bg"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="+ADD Profile picture"
+        android:backgroundTint="@color/white"
+        android:layout_gravity="center"
+        android:textColor="@color/colorPrimary" />
+
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/register"
+        android:text="Register"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/mapbox_blue"
+        android:layout_marginBottom="10dp"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Already have an account ?"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:textStyle="bold|italic"
+        android:gravity="center_horizontal"
+
+
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/signin"
+        android:text="lOGIN"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/mapbox_blue"
+        android:layout_marginBottom="30dp"
+
+        />
+
+
+</LinearLayout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "726548998628",
+    "firebase_url": "https://greenbru-5e1b0-default-rtdb.europe-west1.firebasedatabase.app/",
+    "project_id": "greenbru-5e1b0",
+    "storage_bucket": "greenbru-5e1b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726548998628:android:3f8ad6cf7b000b236abff1",
+        "android_client_info": {
+          "package_name": "com.example.greenbru"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726548998628-me0j81tt2850qmgub21lo2d7bk5ndql0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.greenbru",
+            "certificate_hash": "9f27837f6670c72743d76f12bf81b3559c8344a8"
+          }
+        },
+        {
+          "client_id": "726548998628-19lof1sqse5qfvh9gep3b0ejmj217elt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7PwabKrfHA7HvCOELvLwPjvm8RuJco84"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726548998628-19lof1sqse5qfvh9gep3b0ejmj217elt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

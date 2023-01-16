@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/menuMap"
+        android:icon="@drawable/map_logo"
+        android:tint="@color/colorPrimary"
+        android:title="@string/map"
+        />
+    <item
+        android:id="@+id/menuProfile"
+        android:icon="@drawable/usericon"
+        android:tint="@color/colorPrimary"
+        android:title="@string/profile"
+        />
+    <item
+        android:id="@+id/menuOrders"
+        android:icon="@drawable/list_signals"
+        android:tint="@color/colorPrimary"
+        android:title="@string/list_of_signals"/>
+    <item
+        android:id="@+id/menuNotifications"
+        android:icon="@drawable/trucktrashbag"
+        android:tint="@color/colorPrimary"
+        android:title="@string/grof_huisvuil"/>
+    <!--<item
+        android:id="@+id/menuCollection"
+        android:icon="@drawable/list_signals"
+        android:tint="@color/colorPrimary"
+        android:title="@string/collection"/>-->
+
+    <item android:title="@string/others">
+        <menu>
+            <item
+                android:id="@+id/menuSettings"
+                android:icon="@drawable/settings_icon"
+                android:title="@string/settings"
+                />
+            <item
+                android:id="@+id/menuSupport"
+                android:icon="@drawable/support_icon"
+                android:title="@string/support"
+                />
+
+            <item
+                android:id="@+id/github"
+                android:icon="@drawable/github_icon"
+                android:title="@string/github_code"
+                />
+            <item
+                android:id="@+id/menuAboutUs"
+                android:icon="@drawable/about_icon"
+                android:title="@string/about_us"
+                />
+            <item
+                android:id="@+id/menuLogout"
+                android:icon="@drawable/logout_icon"
+                android:title="@string/log_out"
+                />
+
+        </menu>
+    </item>
+
+
+</menu>
