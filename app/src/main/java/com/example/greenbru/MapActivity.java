@@ -305,7 +305,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 mapboxMap.addMarkers(RecycleContainerList);
 
-                GetMarkersFromDatabase();
+                MarkersFromDB();
 
             }
 
@@ -404,7 +404,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-    public void GetMarkersFromDatabase() {
+    public void MarkersFromDB() {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://greenbru-5e1b0-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference ref = database.getReference("Signals");
@@ -419,7 +419,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     double lng = markerSnapshot.child("longitude").getValue(Double.class);
 
                     LatLng latLng = new LatLng(lat, lng);
-                    MakeMarker(latLng);
+                    CreateMarker(latLng);
 
                     mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjf4m44iw0uza2spb3q0a7s41")
 
@@ -464,7 +464,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         });
     }
-    public void MakeMarker(@NonNull LatLng point){
+    public void CreateMarker(@NonNull LatLng point){
         Feature markerFeature = Feature.fromGeometry(Point.fromLngLat(point.getLongitude(), point.getLatitude()));
 
         markerFeature.addNumberProperty("lng", point.getLongitude());
