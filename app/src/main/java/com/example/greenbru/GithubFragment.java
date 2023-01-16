@@ -63,7 +63,7 @@ public class GithubFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_github, container, false);
 
         webView = rootView.findViewById(R.id.web_view_github);
-        webView.loadUrl("https://github.com/SoufianeBayoud/OpdrachtFrameworks_OpdrachtIdentity");
+        webView.loadUrl("https://github.com/SoufianeBayoud/GreenBRU");
 
         return rootView;
     }
