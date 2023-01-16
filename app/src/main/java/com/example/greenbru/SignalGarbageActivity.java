@@ -136,7 +136,7 @@ public class SignalGarbageActivity extends AppCompatActivity {
         }
     }
 
-    //We use the if else if because wu use requestcode in 2 different places
+    //We use the if else if because we use requestcode in 2 different places
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
