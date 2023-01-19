@@ -7,7 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,7 +65,23 @@ public class SupportFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_support, container, false);
 
         webView = rootView.findViewById(R.id.web_view_support);
-        webView.loadUrl("https://www.arp-gan.be/nl/over-ons/contact.html");
+        //webView.loadUrl("https://www.arp-gan.be/nl/over-ons/contact.html//");
+
+        //A TESTER
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setUseWideViewPort(true);
+
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+
+                view.loadUrl("https://www.arp-gan.be/nl/over-ons/contact.html//");
+                return true;
+            }
+        });
+        webView.loadUrl("https://www.arp-gan.be/nl/over-ons/contact.html//");
+
 
         return rootView;
 

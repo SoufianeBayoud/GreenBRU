@@ -51,6 +51,7 @@
                 android:text="@string/signal_garbage" />
 
 
+
         </LinearLayout>
         <FrameLayout
             android:layout_width="match_parent"

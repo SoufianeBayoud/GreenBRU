@@ -33,7 +33,6 @@ import java.util.Objects;
 public class LoginActivity extends AppCompatActivity {
     EditText username, password;
     Button login, register;
-    ImageView googleBtn;
     String url = "https://greenbru-5e1b0-default-rtdb.europe-west1.firebasedatabase.app/";
     public static String value;
     private static final String SHARED_NAME= "user";

@@ -18,6 +18,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class SignalGarbageActivity extends AppCompatActivity {
     EditText title, description;
     AppCompatButton takePicture, selectPicture;
     Button signal_garbage_btn, go_back_btn;
+    ProgressBar progressBar;
     DatabaseReference root;
     StorageReference reference;
     Uri imageUri;
@@ -53,6 +55,8 @@ public class SignalGarbageActivity extends AppCompatActivity {
         selectPicture = findViewById(R.id.select_picture_register);
         signal_garbage_btn = findViewById(R.id.signal_garbage_btn);
         go_back_btn = findViewById(R.id.go_back_to_map_signal_garbage_btn);
+        progressBar = findViewById(R.id.progress_bar_signal_garbage);
+        progressBar.setVisibility(View.INVISIBLE);
         String url = "https://greenbru-5e1b0-default-rtdb.europe-west1.firebasedatabase.app/";
         root = FirebaseDatabase.getInstance(url).getReference("Signals");
         reference = FirebaseStorage.getInstance().getReference();
@@ -161,7 +165,7 @@ public class SignalGarbageActivity extends AppCompatActivity {
                         String description_signal = description.getText().toString();
                         latitude = saved.getDouble("lat");
                         longitude = saved.getDouble("lon");
-
+                        progressBar.setVisibility(View.INVISIBLE);
                         AlertsHelperClass alertsHelperClass = new AlertsHelperClass(title_signal, description_signal, uri.toString(), latitude, longitude);
                         root.child(title_signal).setValue(alertsHelperClass);
                         Toast.makeText(SignalGarbageActivity.this, "Upload succes!", Toast.LENGTH_SHORT).show();
@@ -172,11 +176,13 @@ public class SignalGarbageActivity extends AppCompatActivity {
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-
+                progressBar.setVisibility(View.VISIBLE);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                progressBar.setVisibility(View.INVISIBLE);
+
                 Toast.makeText(SignalGarbageActivity.this, "Uploading failed", Toast.LENGTH_SHORT).show();
             }
         });

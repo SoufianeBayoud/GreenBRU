@@ -4,14 +4,13 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacement;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconOffset;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.textColor;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.textField;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
@@ -70,6 +69,7 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+import com.mapbox.mapboxsdk.style.expressions.Expression;
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
@@ -192,6 +192,41 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 Toast.makeText(MapActivity.this,"Latitude: " + latitude + " Longitude: " + longitude,Toast.LENGTH_SHORT).show();
 
+                LatLng marker = new LatLng(latitude, longitude);
+                CreateMarker(marker);
+                mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjf4m44iw0uza2spb3q0a7s41")
+
+                        // Add the SymbolLayer icon image to the map style
+                        .withImage(ICON_ID, BitmapFactory.decodeResource(
+                                MapActivity.this.getResources(), R.drawable.red_marker))
+
+                        // Adding a GeoJson source for the SymbolLayer icons.
+                        .withSource(new GeoJsonSource(SOURCE_ID,
+                                FeatureCollection.fromFeatures(symbolLayerIconFeatureList)))
+
+                        // Adding the actual SymbolLayer to the map style. An offset is added that the bottom of the red
+                        // marker icon gets fixed to the coordinate, rather than the middle of the icon being fixed to
+                        // the coordinate point. This is offset is not always needed and is dependent on the image
+                        // that you use for the SymbolLayer icon.
+                        .withLayer(new SymbolLayer(LAYER_ID, SOURCE_ID)
+                                .withProperties(
+                                        iconImage(ICON_ID),
+                                        iconAllowOverlap(true),
+                                        iconIgnorePlacement(true),
+                                        iconOffset(new Float[]{0f, -9f})
+
+                                )
+                        )
+
+                        .withSource(new GeoJsonSource("selected-marker"))
+
+                        .withLayer(new SymbolLayer("selected-marker-layer", "selected-marker")
+                                .withProperties(PropertyFactory.iconImage(ICON_ID),
+                                        iconAllowOverlap(true),
+                                        iconOffset(new Float[]{0f, -9f})
+                                )));
+
+
             }
         });
 
@@ -212,6 +247,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             return true;
         });
+
         FrameLayout wrapper = findViewById(R.id.wrapper);
         navigationView.getMenu().findItem(R.id.menuProfile).setOnMenuItemClickListener(menuItem -> {
             Bundle data = getIntent().getExtras();
@@ -245,8 +281,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     }
                 }
         );
-
-
     }
 
 
@@ -375,6 +409,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             permissionsManager = new PermissionsManager(this);
             permissionsManager.requestLocationPermissions(this);
         }
+
+
     }
 
     @Override
@@ -387,7 +423,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         permissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
 
     @Override
     public void onPermissionResult(boolean b) {
@@ -453,6 +488,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                             iconOffset(new Float[]{0f, -9f})
                                     )));
 
+                    LatLng LatLngForMarker = new LatLng(latitude, longitude);
+
+                    CreateMarker(LatLngForMarker);
 
                 }
             }
@@ -464,6 +502,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         });
     }
+
     public void CreateMarker(@NonNull LatLng point){
         Feature markerFeature = Feature.fromGeometry(Point.fromLngLat(point.getLongitude(), point.getLatitude()));
 
@@ -471,6 +510,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         markerFeature.addNumberProperty("lat", point.getLatitude());
         symbolLayerIconFeatureList.add(markerFeature);
     }
+
     @Override
     @SuppressWarnings( {"MissingPermission"})
     protected void onStart() {
@@ -515,6 +555,35 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         super.onLowMemory();
         mapView.onLowMemory();
     }
+    public void SetMarkerStyle(){
+
+        if (!mapView.isDestroyed()) {
+
+            mapboxMap.setStyle(new Style.Builder().fromUri("mapbox://styles/mapbox/cjf4m44iw0uza2spb3q0a7s41")
+
+                    // Add the SymbolLayer icon image to the map style
+                    .withImage(ICON_ID, BitmapFactory.decodeResource(
+                            MapActivity.this.getResources(), R.drawable.red_marker))
+
+                    // Adding a GeoJson source for the SymbolLayer icons.
+                    .withSource(new GeoJsonSource(SOURCE_ID,
+                            FeatureCollection.fromFeatures(symbolLayerIconFeatureList)))
+
+                    // Adding the actual SymbolLayer to the map style. An offset is added that the bottom of the red
+                    // marker icon gets fixed to the coordinate, rather than the middle of the icon being fixed to
+                    // the coordinate point. This is offset is not always needed and is dependent on the image
+                    // that you use for the SymbolLayer icon.
+                    .withLayer(new SymbolLayer(LAYER_ID, SOURCE_ID)
+                            .withProperties(
+                                    iconImage(ICON_ID),
+                                    textColor(Color.GREEN),
+                                    iconAllowOverlap(true),
+                                    iconIgnorePlacement(true)
+                            )
+                    ));
+        }
+    }
+
 
 
 }
